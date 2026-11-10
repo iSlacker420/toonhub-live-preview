@@ -1,0 +1,59 @@
+name: Sync MAGIC SCANNER JSON to iPhone QA
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: worldwide-json-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download latest successful WORLDWIDE export artifact
+        env:
+          GH_TOKEN: ${{ secrets.SOURCE_REPO_READ_TOKEN || github.token }}
+          SOURCE: iSlacker420/toonhub.tv
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Read source workflow run; no guessed URLs and no unpublished candidates.
+          gh api "repos/$SOURCE/actions/workflows/worldwide-country-filter-tests.yml/runs?branch=feature/worldwide-country-filter-20261110&status=success&per_page=10" > /tmp/runs.json
+          python3 - <<'PY'
+          import json,os
+          runs=json.load(open('/tmp/runs.json')).get('workflow_runs',[])
+          if not runs: raise SystemExit('No successful WORLDWIDE workflow run')
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('SOURCE_RUN='+str(runs[0]['id'])+'\n')
+          PY
+          gh api "repos/$SOURCE/actions/runs/$SOURCE_RUN/artifacts" > /tmp/artifacts.json
+          python3 - <<'PY'
+          import json,os
+          xs=json.load(open('/tmp/artifacts.json')).get('artifacts',[])
+          xs=[x for x in xs if x['name']=='worldwide-live-vod-PL-review-only' and not x['expired']]
+          if not xs: raise SystemExit('No unexpired reviewed JSON artifact')
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('ARTIFACT_ID='+str(xs[0]['id'])+'\n')
+          PY
+          gh api "repos/$SOURCE/actions/artifacts/$ARTIFACT_ID/zip" > /tmp/export.zip
+          unzip -p /tmp/export.zip worldwide-live-PL.json > /tmp/worldwide-live-PL.json
+      - name: Validate metadata-only export before publishing
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs'
+          const x=JSON.parse(fs.readFileSync('/tmp/worldwide-live-PL.json','utf8'))
+          if(x.country!=='PL'||x.ephemeral!==true||x.mediaStored!==false||!Array.isArray(x.items)||x.items.length>1000)process.exit(1)
+          if(x.items.some(v=>v.rightsReviewed!==true||v.embedAllowed!==true||v.embeddable!==true||v.regionStatus!=='allowed'||v.status!=='available'||typeof v.rightsEvidenceUrl!=='string'||!v.rightsEvidenceUrl.startsWith('https://')))process.exit(1)
+          if(x.items.some((v,i)=>v.sourceType==='live'&&x.items.slice(0,i).some(p=>p.sourceType==='video')))process.exit(1)
+          console.log('Verified LIVE/VOD records:',x.items.length)
+          JS
+      - name: Publish JSON to QA Pages repository
+        run: |
+          cp /tmp/worldwide-live-PL.json worldwide-live-PL.json
+          if git diff --quiet -- worldwide-live-PL.json && git ls-files --error-unmatch worldwide-live-PL.json >/dev/null 2>&1; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add worldwide-live-PL.json
+          git commit -m 'data(qa): sync reviewed WORLDWIDE LIVE/VOD metadata'
+          git push
