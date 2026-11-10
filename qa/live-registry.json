@@ -1,0 +1,20 @@
+{
+  "revision": 1,
+  "updatedAt": "2026-11-10T14:07:00Z",
+  "testOnly": true,
+  "rightsApproved": false,
+  "channels": [
+    {
+      "id": "masha",
+      "name": "Маша и Медведь",
+      "youtubeId": "hNFz5B0p8x0",
+      "simulated": false
+    },
+    {
+      "id": "zig",
+      "name": "Zig & Sharko",
+      "youtubeId": "hWDQZeOraxs",
+      "simulated": false
+    }
+  ]
+}
