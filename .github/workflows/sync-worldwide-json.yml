@@ -35,6 +35,37 @@ jobs:
             scanner-snapshot/data/cartoon-library.json \
             scanner-source/data/trusted-sources.json \
             PL /tmp/worldwide-live-PL.json
+      - name: Add explicitly licensed QA-only VOD fallback (never LIVE)
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs'
+          const p='/tmp/worldwide-live-PL.json'
+          const x=JSON.parse(fs.readFileSync(p,'utf8'))
+          const registry=JSON.parse(fs.readFileSync('scanner-snapshot/data/cartoon-library.json','utf8'))
+          const trusted=JSON.parse(fs.readFileSync('scanner-source/data/trusted-sources.json','utf8'))
+          const approved=new Set(['w3c-big-buck-bunny','w3c-sintel-trailer'])
+          const now=new Date().toISOString()
+          const candidates=registry.videos.filter(v=>approved.has(v.sourceId)&&v.provider==='html5'&&v.kind==='demo'&&v.sourceType==='video'&&v.status==='available'&&v.embeddable===true)
+          for(const v of candidates){
+            const src=trusted.find(s=>s.id===v.sourceId)
+            if(!src||src.approval!=='approved-demo'||src.license!=='CC BY 3.0'||src.licenseUrl!=='https://creativecommons.org/licenses/by/3.0/'||!src.urls?.some(u=>u.id===v.id&&u.src===v.src))continue
+            if(!v.src?.startsWith('https://media.w3.org/'))continue
+            // Check that media endpoint still responds before making it visible in QA.
+            let available=false
+            try{
+              const response=await fetch(v.src,{method:'HEAD',signal:AbortSignal.timeout(10000)})
+              available=response.ok
+            }catch{}
+            if(!available){console.log('QA demo unreachable:',v.id);continue}
+            if(x.items.some(item=>item.id===v.id))continue
+            x.items.push({...v,rightsReviewed:true,rightsEvidenceUrl:src.licenseUrl,embedAllowed:true,regionStatus:'allowed',allowedCountries:['PL'],ageRating:'all',lastCheckedAt:now,qaOnly:true,qaLicenseBasis:src.sourcePage})
+          }
+          x.items.sort((a,b)=>(a.sourceType==='live'?0:1)-(b.sourceType==='live'?0:1))
+          x.liveCount=x.items.filter(v=>v.sourceType==='live').length
+          x.fallbackCount=x.items.filter(v=>v.sourceType==='video').length
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n')
+          console.log('QA eligible LIVE:',x.liveCount,'VOD:',x.fallbackCount)
+          JS
       - name: Validate metadata-only export before publishing
         run: |
           node --input-type=module <<'JS'
