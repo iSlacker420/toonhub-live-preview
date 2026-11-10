@@ -13,33 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download latest successful WORLDWIDE export artifact
-        env:
-          GH_TOKEN: ${{ secrets.SOURCE_REPO_READ_TOKEN }}
-          SOURCE: iSlacker420/toonhub.tv
-        shell: bash
+      - name: Checkout MAGIC SCANNER exporter (read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: iSlacker420/toonhub.tv
+          ref: feature/worldwide-country-filter-20261110
+          token: ${{ secrets.SOURCE_REPO_READ_TOKEN }}
+          path: scanner-source
+          persist-credentials: false
+      - name: Checkout current MAGIC SCANNER registry snapshot (read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: iSlacker420/toonhub.tv
+          ref: data/magic-scanner-registry
+          token: ${{ secrets.SOURCE_REPO_READ_TOKEN }}
+          path: scanner-snapshot
+          persist-credentials: false
+      - name: Export reviewed LIVE/VOD from current registry
         run: |
-          set -euo pipefail
-          if [ -z "${GH_TOKEN:-}" ]; then
-            echo '::error::SOURCE_REPO_READ_TOKEN is not configured in toonhub-live-preview. Add a fine-grained GitHub token with Actions:read and Contents:read on iSlacker420/toonhub.tv.'
-            exit 1
-          fi
-          if ! gh api "repos/$SOURCE" --jq '.full_name' >/dev/null; then
-            echo '::error::Cannot access source repository. Check SOURCE_REPO_READ_TOKEN repository access and Contents:read.'
-            exit 1
-          fi
-          # Read source workflow run; no guessed URLs and no unpublished candidates.
-          if ! gh api "repos/$SOURCE/actions/workflows/worldwide-country-filter-tests.yml/runs?branch=feature/worldwide-country-filter-20261110&status=success&per_page=10" > /tmp/runs.json; then
-            echo '::error::No access to source Actions workflow, or workflow not registered. Verify Actions:read and that the source workflow ran successfully.'
-            exit 1
-          fi
-          SOURCE_RUN=$(python3 -c "import json; xs=json.load(open('/tmp/runs.json')).get('workflow_runs',[]); print(xs[0]['id'] if xs else '')")
-          test -n "$SOURCE_RUN" || { echo 'No successful WORLDWIDE workflow run'; exit 1; }
-          gh api "repos/$SOURCE/actions/runs/$SOURCE_RUN/artifacts" > /tmp/artifacts.json
-          ARTIFACT_ID=$(python3 -c "import json; xs=json.load(open('/tmp/artifacts.json')).get('artifacts',[]); print(next((x['id'] for x in xs if x['name']=='worldwide-live-vod-PL-review-only' and not x['expired']),''))")
-          test -n "$ARTIFACT_ID" || { echo 'No unexpired reviewed JSON artifact'; exit 1; }
-          gh api "repos/$SOURCE/actions/artifacts/$ARTIFACT_ID/zip" > /tmp/export.zip
-          unzip -p /tmp/export.zip worldwide-live-PL.json > /tmp/worldwide-live-PL.json
+          node scanner-source/scripts/export-worldwide-live.mjs \
+            scanner-snapshot/data/cartoon-library.json \
+            scanner-source/data/trusted-sources.json \
+            PL /tmp/worldwide-live-PL.json
       - name: Validate metadata-only export before publishing
         run: |
           node --input-type=module <<'JS'
