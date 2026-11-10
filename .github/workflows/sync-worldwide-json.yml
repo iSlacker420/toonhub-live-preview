@@ -87,7 +87,7 @@ jobs:
           })
           x.liveCount=x.items.filter(v=>v.sourceType==='live').length
           x.fallbackCount=x.items.filter(v=>v.sourceType==='video').length
-          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\\n')
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n')
           console.log('Rights-filtered LIVE:',x.liveCount,'VOD:',x.fallbackCount)
           JS
       - name: Validate metadata-only export before publishing
