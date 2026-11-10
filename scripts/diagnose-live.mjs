@@ -9,6 +9,7 @@ const sourceMap=new Map(sources.map(s=>[s.id,s]));
 const codes=['SOURCE_NOT_TRUSTED','METADATA_INVALID','AGE_RESTRICTED','RIGHTS_NOT_APPROVED','REGION_NOT_CONFIRMED'];
 const counts=Object.fromEntries(codes.map(c=>[c,0]));
 let total=0,eligible=0;
+const rejectedSources=[];
 const metadataReasons={STATUS_UNAVAILABLE:0,NOT_EMBEDDABLE:0,SOURCE_EMBED_DISABLED:0,CHECKED_AT_MISSING:0,CHECKED_AT_STALE:0,CHECKED_AT_FUTURE:0};
 const now=Date.now();
 for(const v of library.videos??[]){
@@ -40,9 +41,15 @@ for(const v of library.videos??[]){
   else if(now-t>15*60_000)metadataReasons.CHECKED_AT_STALE++;
   else if(t>now+5*60_000)metadataReasons.CHECKED_AT_FUTURE++;
  }
- if(reason)counts[reason]++;else eligible++;
+ if(reason){
+  counts[reason]++;
+  rejectedSources.push({sourceId:typeof v.sourceId==='string'?v.sourceId:'(missing)',reason,sourceKnown:Boolean(s),embedAllowed:s?.embedAllowed===true,rightsReviewed:s?.rightsReviewed===true,rightsMode:s?.rightsMode??'REVIEW_REQUIRED',regionStatus:v.regionStatus??s?.regionStatus??'unknown'});
+ }else eligible++;
 }
 console.log('LIVE diagnostic (first blocking reason per candidate; no identifiers):');
 console.log('LIVE candidates:',total,'eligible:',eligible);
 for(const code of codes)console.log(code+':',counts[code]);
 for(const [code,count] of Object.entries(metadataReasons))console.log('  '+code+':',count);
+
+console.log('Rejected source registry IDs (no video identifiers):');
+for(const item of rejectedSources)console.log(JSON.stringify(item));
