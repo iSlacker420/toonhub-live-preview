@@ -9,6 +9,7 @@ const sourceMap=new Map(sources.map(s=>[s.id,s]));
 const codes=['SOURCE_NOT_TRUSTED','METADATA_INVALID','AGE_RESTRICTED','RIGHTS_NOT_APPROVED','REGION_NOT_CONFIRMED'];
 const counts=Object.fromEntries(codes.map(c=>[c,0]));
 let total=0,eligible=0;
+const metadataReasons={STATUS_UNAVAILABLE:0,NOT_EMBEDDABLE:0,SOURCE_EMBED_DISABLED:0,CHECKED_AT_MISSING:0,CHECKED_AT_STALE:0,CHECKED_AT_FUTURE:0};
 const now=Date.now();
 for(const v of library.videos??[]){
  if(v.sourceType!=='live')continue;
@@ -30,8 +31,18 @@ for(const v of library.videos??[]){
     (allowed!==undefined&&!allowed.includes(country))||
     (allowed===undefined&&blocked.length===0))reason='REGION_NOT_CONFIRMED';
  }
+ if(reason==='METADATA_INVALID'){
+  const t=Date.parse(v.lastCheckedAt??v.checkedAt??'');
+  if(v.status!=='available')metadataReasons.STATUS_UNAVAILABLE++;
+  if(v.embeddable!==true)metadataReasons.NOT_EMBEDDABLE++;
+  if(s.embedAllowed!==true)metadataReasons.SOURCE_EMBED_DISABLED++;
+  if(!Number.isFinite(t))metadataReasons.CHECKED_AT_MISSING++;
+  else if(now-t>15*60_000)metadataReasons.CHECKED_AT_STALE++;
+  else if(t>now+5*60_000)metadataReasons.CHECKED_AT_FUTURE++;
+ }
  if(reason)counts[reason]++;else eligible++;
 }
 console.log('LIVE diagnostic (first blocking reason per candidate; no identifiers):');
 console.log('LIVE candidates:',total,'eligible:',eligible);
 for(const code of codes)console.log(code+':',counts[code]);
+for(const [code,count] of Object.entries(metadataReasons))console.log('  '+code+':',count);
