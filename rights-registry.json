@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "updatedAt": null,
+  "blockedSourceIds": [],
+  "blockedVideoIds": [],
+  "blockedDomains": [],
+  "notes": "QA rights control. Blocked identifiers are always excluded. Approval is never inferred from absence in this list."
+}
