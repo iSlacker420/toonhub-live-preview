@@ -39,8 +39,12 @@ jobs:
           token: ${{ secrets.TOONHUB_SCANNER_READ_TOKEN }}
           path: metadata
           persist-credentials: false
-      - name: Export country-filtered LIVE from existing scheduled scanner snapshot
-        run: node scanner/scripts/export-worldwide-live.mjs metadata/data/cartoon-library.json scanner/data/trusted-sources.json PL "$RUNNER_TEMP/approved-live.json"
+      - name: Revalidate existing LIVE via official YouTube videos.list (metadata only)
+        env:
+          YOUTUBE_DATA_API_KEY: ${{ secrets.YOUTUBE_DATA_API_KEY }}
+        run: node preview/scripts/recheck-live.mjs metadata/data/cartoon-library.json "$RUNNER_TEMP/fresh-library.json"
+      - name: Export country-filtered LIVE from freshly validated snapshot
+        run: node scanner/scripts/export-worldwide-live.mjs "$RUNNER_TEMP/fresh-library.json" scanner/data/trusted-sources.json PL "$RUNNER_TEMP/approved-live.json"
       - name: Diagnose live candidates without exposing private records
         env:
           EXPORT_PATH: ${{ runner.temp }}/approved-live.json
