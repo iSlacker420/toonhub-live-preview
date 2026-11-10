@@ -10,9 +10,9 @@ if(exported.country!=='PL'||exported.ephemeral!==true||exported.mediaStored!==fa
 if(existing.testOnly!==true||existing.rightsApproved!==false||!Array.isArray(existing.channels))throw Error('Invalid QA registry');
 const approved=new Map();
 for(const item of exported.items){
- const id=item.youtubeVideoId;
+ const id=item.youtubeVideoId ?? item.id;
  if(item.provider!=='youtube'||item.sourceType!=='live'||item.rightsReviewed!==true||
-    item.embedAllowed!==true||item.embeddable!==true||item.regionStatus!=='allowed'||
+    item.embedAllowed!==true||item.embeddable!==true||item.regionStatus!=='allowed'||item.ageRating==='18+'||item.ageRating==='unknown'||
     !item.rightsEvidenceUrl?.startsWith('https://')||!/^[a-zA-Z0-9_-]{11}$/.test(id??'')||
     typeof item.title!=='string'||!item.title.trim())continue;
  approved.set('approved-'+id,{id:'approved-'+id,name:item.title.slice(0,120),youtubeId:id,simulated:false,approval:'reviewed'});
@@ -20,7 +20,7 @@ for(const item of exported.items){
 const base=existing.channels.filter(x=>x.approval!=='reviewed');
 const channels=[...base,...approved.values()].slice(0,100);
 if(JSON.stringify(channels)===JSON.stringify(existing.channels)){
- console.log('No eligible LIVE changes; preserve QA registry');
+ console.log('No eligible LIVE changes; approved LIVE in export:',approved.size,'; preserve QA registry');
  process.exit(0);
 }
 const next={...existing,revision:existing.revision+1,updatedAt:new Date().toISOString(),channels};
