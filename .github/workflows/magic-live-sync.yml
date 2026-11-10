@@ -41,6 +41,11 @@ jobs:
           persist-credentials: false
       - name: Export country-filtered LIVE from existing scheduled scanner snapshot
         run: node scanner/scripts/export-worldwide-live.mjs metadata/data/cartoon-library.json scanner/data/trusted-sources.json PL "$RUNNER_TEMP/approved-live.json"
+      - name: Diagnose live candidates without exposing private records
+        env:
+          EXPORT_PATH: ${{ runner.temp }}/approved-live.json
+        run: |
+          node -e "const x=require(process.env.EXPORT_PATH);console.log('Scanner snapshot revision:',x.revision,'checkedAt:',x.checkedAt,'eligible LIVE:',x.items.length);if(!x.items.length)console.log('No rights-reviewed, fresh, region-allowed LIVE. QA will not invent or approve streams.')"
       - name: Merge only rights-reviewed streams into public QA metadata
         run: node preview/scripts/merge-approved-live.mjs "$RUNNER_TEMP/approved-live.json" preview/qa/live-registry.json
       - name: Commit QA metadata only if changed
