@@ -66,6 +66,30 @@ jobs:
           fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n')
           console.log('QA eligible LIVE:',x.liveCount,'VOD:',x.fallbackCount)
           JS
+      - name: Apply central rights blocklist before publishing
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs'
+          const p='/tmp/worldwide-live-PL.json'
+          const x=JSON.parse(fs.readFileSync(p,'utf8'))
+          const rules=JSON.parse(fs.readFileSync('rights-registry.json','utf8'))
+          if(rules.version!==1||!Array.isArray(rules.blockedSourceIds)||!Array.isArray(rules.blockedVideoIds)||!Array.isArray(rules.blockedDomains))throw Error('Invalid rights registry; fail closed')
+          const sources=new Set(rules.blockedSourceIds)
+          const videos=new Set(rules.blockedVideoIds)
+          const domains=new Set(rules.blockedDomains.map(s=>s.toLowerCase()))
+          x.items=x.items.filter(v=>{
+            if(sources.has(v.sourceId)||videos.has(v.id)||videos.has(v.videoId))return false
+            try{
+              const u=new URL(v.src||v.sourcePage||'https://www.youtube.com/')
+              if(domains.has(u.hostname.toLowerCase()))return false
+            }catch{return false}
+            return true
+          })
+          x.liveCount=x.items.filter(v=>v.sourceType==='live').length
+          x.fallbackCount=x.items.filter(v=>v.sourceType==='video').length
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\\n')
+          console.log('Rights-filtered LIVE:',x.liveCount,'VOD:',x.fallbackCount)
+          JS
       - name: Validate metadata-only export before publishing
         run: |
           node --input-type=module <<'JS'
