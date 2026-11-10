@@ -1,5 +1,5 @@
 {
-  "revision": 1,
+  "revision": 2,
   "updatedAt": "2026-11-10T14:07:00Z",
   "testOnly": true,
   "rightsApproved": false,
@@ -15,6 +15,12 @@
       "name": "Zig & Sharko",
       "youtubeId": "hWDQZeOraxs",
       "simulated": false
+    },
+    {
+      "id": "simulated-third",
+      "name": "Третий LIVE — тест обновления",
+      "youtubeId": "hNFz5B0p8x0",
+      "simulated": true
     }
   ]
 }
