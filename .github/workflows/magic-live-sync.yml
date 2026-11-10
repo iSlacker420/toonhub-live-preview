@@ -49,7 +49,8 @@ jobs:
         env:
           EXPORT_PATH: ${{ runner.temp }}/approved-live.json
         run: |
-          node -e "const x=require(process.env.EXPORT_PATH);console.log('Scanner snapshot revision:',x.revision,'checkedAt:',x.checkedAt,'eligible LIVE:',x.items.length);if(!x.items.length)console.log('No rights-reviewed, fresh, region-allowed LIVE. QA will not invent or approve streams.')"
+          node -e "const x=require(process.env.EXPORT_PATH);console.log('Scanner snapshot revision:',x.revision,'checkedAt:',x.checkedAt,'eligible LIVE:',x.items.length)"
+          node preview/scripts/diagnose-live.mjs "$RUNNER_TEMP/fresh-library.json" scanner/data/trusted-sources.json PL
       - name: Merge only rights-reviewed streams into public QA metadata
         run: node preview/scripts/merge-approved-live.mjs "$RUNNER_TEMP/approved-live.json" preview/qa/live-registry.json
       - name: Commit QA metadata only if changed
