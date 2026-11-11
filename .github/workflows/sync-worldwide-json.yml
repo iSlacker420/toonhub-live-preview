@@ -103,9 +103,9 @@ jobs:
       - name: Publish JSON to QA Pages repository
         run: |
           cp /tmp/worldwide-live-PL.json worldwide-live-PL.json
-          if git diff --quiet -- worldwide-live-PL.json && git ls-files --error-unmatch worldwide-live-PL.json >/dev/null 2>&1 && git ls-files --error-unmatch >/dev/null 2>&1; then exit 0; fi
+          if git diff --quiet -- worldwide-live-PL.json && git ls-files --error-unmatch worldwide-live-PL.json >/dev/null 2>&1; then exit 0; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add worldwide-live-PL.json data/cartoonstv-discovery-results.json
+          git add worldwide-live-PL.json
           git commit -m 'data(qa): sync reviewed WORLDWIDE LIVE/VOD metadata'
           git push
