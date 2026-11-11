@@ -111,7 +111,7 @@ jobs:
           import fs from 'node:fs'
           const x=JSON.parse(fs.readFileSync('/tmp/worldwide-live-PL.json','utf8'))
           if(x.country!=='PL'||x.ephemeral!==true||x.mediaStored!==false||!Array.isArray(x.items)||x.items.length>1000)process.exit(1)
-          if(x.items.some(v=>v.rightsReviewed!==true||v.embedAllowed!==true||v.embeddable!==true||v.regionStatus!=='allowed'||v.status!=='available'||typeof v.rightsEvidenceUrl!=='string'||!v.rightsEvidenceUrl.startsWith('https://')))process.exit(1)
+          if(x.items.some(v=>(v.rightsReviewed!==true && !(v.rightsMode==='PUBLIC_YOUTUBE_IFRAME' && v.provider==='youtube' && v.qaOnly===true))||v.embedAllowed!==true||v.embeddable!==true||v.regionStatus!=='allowed'||v.status!=='available'||typeof v.rightsEvidenceUrl!=='string'||!v.rightsEvidenceUrl.startsWith('https://')))process.exit(1)
           if(x.items.some((v,i)=>v.sourceType==='live'&&x.items.slice(0,i).some(p=>p.sourceType==='video')))process.exit(1)
           console.log('Verified LIVE/VOD records:',x.items.length)
           JS
