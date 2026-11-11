@@ -1,0 +1,338 @@
+{
+  "version": 1,
+  "source": "https://cartoonstvonline.com/category/tv/",
+  "policy": "Discovery leads only. No stream URL, licensing or embed approval inferred.",
+  "status": "PENDING",
+  "candidates": [
+    {
+      "id": "cartoonstv-01",
+      "name": "PBS Kids",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-02",
+      "name": "TVOKids live",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-03",
+      "name": "Kidoodle TV",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-04",
+      "name": "Happy Kids TV",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-05",
+      "name": "Toon Goggles free",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-06",
+      "name": "Boomerang TV online",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-07",
+      "name": "Lego Channel",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-08",
+      "name": "moonbug kids",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-09",
+      "name": "Pororo Penguin",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-10",
+      "name": "PJ Masks online",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-11",
+      "name": "PAW Patrol",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-12",
+      "name": "Ricky Zoom",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-13",
+      "name": "Nickelodeon TV online",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-14",
+      "name": "Treehouse TV live",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-15",
+      "name": "Ben and Holly",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-16",
+      "name": "DC Super Hero Girls",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-17",
+      "name": "Teen Titans Go!",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-18",
+      "name": "Superman cartoon",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-19",
+      "name": "G.I. Joe",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-20",
+      "name": "Smurfs online",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-21",
+      "name": "The Fairly OddParents",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-22",
+      "name": "Dave and Ava",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-23",
+      "name": "Peppa Pig live",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-24",
+      "name": "Tom and Friends",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-25",
+      "name": "TOM & JERRY",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-26",
+      "name": "Caillou english",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-27",
+      "name": "Booba cartoon",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-28",
+      "name": "Om Nom Stories",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-29",
+      "name": "BabyBus english",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-30",
+      "name": "Looney Tunes",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-31",
+      "name": "Mr Bean animated",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-32",
+      "name": "Cartoon Classic",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    },
+    {
+      "id": "cartoonstv-33",
+      "name": "Masha and Bear",
+      "sourcePage": "https://cartoonstvonline.com/category/tv/",
+      "rightsReviewed": false,
+      "embedAllowed": false,
+      "regionStatus": "unknown",
+      "status": "PENDING",
+      "autoPublish": false
+    }
+  ]
+}
