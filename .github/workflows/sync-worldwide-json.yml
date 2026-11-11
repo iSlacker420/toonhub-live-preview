@@ -37,8 +37,12 @@ jobs:
             PL /tmp/worldwide-live-PL.json
       - name: Add public embeddable YouTube LIVE from FAST CHECK
         run: |
-          if [ -f scanner-snapshot/data/cartoonstv-discovery-results.json ]; then
+          if [ -f scanner-snapshot/data/magic-unified-registry.json ]; then
+            node scanner-source/scripts/export-public-live-qa.mjs scanner-snapshot/data/magic-unified-registry.json PL /tmp/public-live.json
+          elif [ -f scanner-snapshot/data/cartoonstv-discovery-results.json ]; then
             node scanner-source/scripts/export-public-live-qa.mjs scanner-snapshot/data/cartoonstv-discovery-results.json PL /tmp/public-live.json
+          fi
+          if [ -f /tmp/public-live.json ]; then
             node --input-type=module <<'JS'
           import fs from 'node:fs'
           const p='/tmp/worldwide-live-PL.json'
