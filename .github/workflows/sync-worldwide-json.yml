@@ -51,7 +51,7 @@ jobs:
           const existing=new Set(x.items.map(v=>v.videoId||v.id))
           for(const v of incoming.items)if(!existing.has(v.videoId)){x.items.unshift(v);existing.add(v.videoId)}
           x.liveCount=x.items.filter(v=>v.sourceType==='live').length
-          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\\n')
+          fs.writeFileSync(p,JSON.stringify(x,null,2)+'\n')
           JS
           fi
       - name: Add explicitly licensed QA-only VOD fallback (never LIVE)
