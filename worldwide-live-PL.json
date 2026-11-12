@@ -1,6 +1,6 @@
 {
-  "revision": 33,
-  "checkedAt": "2026-11-11T18:08:56.357Z",
+  "revision": 36,
+  "checkedAt": "2026-11-12T16:21:24.513Z",
   "source": "worldwide-registry",
   "country": "PL",
   "ephemeral": true,
@@ -18,11 +18,26 @@
       "kind": "demo",
       "status": "available",
       "embeddable": true,
-      "checkedAt": "2026-11-11T18:08:56.357Z",
+      "checkedAt": "2026-11-12T16:21:24.513Z",
       "credit": "© 2008 Blender Foundation / www.bigbuckbunny.org",
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
       "sourcePage": "https://peach.blender.org/about/",
+      "verification": {
+        "state": "APPROVED",
+        "rightsStatus": "approved",
+        "embedStatus": "allowed",
+        "serverStatus": "available",
+        "checkedAt": "2026-11-12T16:21:24.513Z",
+        "nextCheckAt": "2026-11-12T16:26:24.513Z",
+        "failureCount": 0,
+        "history": [
+          {
+            "at": "2026-11-12T16:21:24.513Z",
+            "state": "APPROVED"
+          }
+        ]
+      },
       "rightsReviewed": true,
       "rightsEvidenceUrl": "https://creativecommons.org/licenses/by/3.0/",
       "embedAllowed": true,
@@ -31,7 +46,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-12T10:25:34.177Z",
+      "lastCheckedAt": "2026-11-12T18:28:40.423Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://peach.blender.org/about/"
     },
@@ -45,11 +60,26 @@
       "kind": "demo",
       "status": "available",
       "embeddable": true,
-      "checkedAt": "2026-11-11T18:08:56.357Z",
+      "checkedAt": "2026-11-12T16:21:24.513Z",
       "credit": "© 2010 Blender Foundation / durian.blender.org",
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
       "sourcePage": "https://durian.blender.org/sharing/",
+      "verification": {
+        "state": "APPROVED",
+        "rightsStatus": "approved",
+        "embedStatus": "allowed",
+        "serverStatus": "available",
+        "checkedAt": "2026-11-12T16:21:24.513Z",
+        "nextCheckAt": "2026-11-12T16:26:24.513Z",
+        "failureCount": 0,
+        "history": [
+          {
+            "at": "2026-11-12T16:21:24.513Z",
+            "state": "APPROVED"
+          }
+        ]
+      },
       "rightsReviewed": true,
       "rightsEvidenceUrl": "https://creativecommons.org/licenses/by/3.0/",
       "embedAllowed": true,
@@ -58,7 +88,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-12T10:25:34.177Z",
+      "lastCheckedAt": "2026-11-12T18:28:40.423Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://durian.blender.org/sharing/"
     }
