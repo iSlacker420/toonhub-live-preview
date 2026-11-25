@@ -1,6 +1,6 @@
 {
-  "revision": 113,
-  "checkedAt": "2026-11-25T08:00:21.487Z",
+  "revision": 114,
+  "checkedAt": "2026-11-25T13:29:18.833Z",
   "source": "worldwide-registry",
   "country": "PL",
   "ephemeral": true,
@@ -18,7 +18,7 @@
       "kind": "demo",
       "status": "available",
       "embeddable": true,
-      "checkedAt": "2026-11-25T08:00:21.487Z",
+      "checkedAt": "2026-11-25T13:29:18.833Z",
       "credit": "© 2008 Blender Foundation / www.bigbuckbunny.org",
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
@@ -28,14 +28,10 @@
         "rightsStatus": "approved",
         "embedStatus": "allowed",
         "serverStatus": "available",
-        "checkedAt": "2026-11-25T08:00:21.487Z",
-        "nextCheckAt": "2026-11-25T08:05:21.487Z",
+        "checkedAt": "2026-11-25T13:29:18.833Z",
+        "nextCheckAt": "2026-11-25T13:34:18.833Z",
         "failureCount": 0,
         "history": [
-          {
-            "at": "2026-11-23T23:42:36.786Z",
-            "state": "APPROVED"
-          },
           {
             "at": "2026-11-24T09:29:55.620Z",
             "state": "APPROVED"
@@ -51,6 +47,10 @@
           {
             "at": "2026-11-25T08:00:21.487Z",
             "state": "APPROVED"
+          },
+          {
+            "at": "2026-11-25T13:29:18.833Z",
+            "state": "APPROVED"
           }
         ]
       },
@@ -62,7 +62,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-25T10:41:25.473Z",
+      "lastCheckedAt": "2026-11-25T20:16:35.701Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://peach.blender.org/about/"
     },
@@ -76,7 +76,7 @@
       "kind": "demo",
       "status": "available",
       "embeddable": true,
-      "checkedAt": "2026-11-25T08:00:21.487Z",
+      "checkedAt": "2026-11-25T13:29:18.833Z",
       "credit": "© 2010 Blender Foundation / durian.blender.org",
       "license": "CC BY 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
@@ -86,14 +86,10 @@
         "rightsStatus": "approved",
         "embedStatus": "allowed",
         "serverStatus": "available",
-        "checkedAt": "2026-11-25T08:00:21.487Z",
-        "nextCheckAt": "2026-11-25T08:05:21.487Z",
+        "checkedAt": "2026-11-25T13:29:18.833Z",
+        "nextCheckAt": "2026-11-25T13:34:18.833Z",
         "failureCount": 0,
         "history": [
-          {
-            "at": "2026-11-23T23:42:36.786Z",
-            "state": "APPROVED"
-          },
           {
             "at": "2026-11-24T09:29:55.620Z",
             "state": "APPROVED"
@@ -109,6 +105,10 @@
           {
             "at": "2026-11-25T08:00:21.487Z",
             "state": "APPROVED"
+          },
+          {
+            "at": "2026-11-25T13:29:18.833Z",
+            "state": "APPROVED"
           }
         ]
       },
@@ -120,7 +120,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-25T10:41:25.473Z",
+      "lastCheckedAt": "2026-11-25T20:16:35.701Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://durian.blender.org/sharing/"
     }
