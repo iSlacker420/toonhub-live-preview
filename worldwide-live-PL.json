@@ -1,6 +1,6 @@
 {
-  "revision": 123,
-  "checkedAt": "2026-11-27T20:59:09.391Z",
+  "revision": 124,
+  "checkedAt": "2026-11-27T23:29:13.301Z",
   "source": "worldwide-registry",
   "country": "PL",
   "ephemeral": true,
@@ -62,7 +62,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-27T21:42:24.960Z",
+      "lastCheckedAt": "2026-11-28T03:36:59.666Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://peach.blender.org/about/"
     },
@@ -120,7 +120,7 @@
         "PL"
       ],
       "ageRating": "all",
-      "lastCheckedAt": "2026-11-27T21:42:24.960Z",
+      "lastCheckedAt": "2026-11-28T03:36:59.666Z",
       "qaOnly": true,
       "qaLicenseBasis": "https://durian.blender.org/sharing/"
     }
